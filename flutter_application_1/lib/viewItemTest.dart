@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
 
 class ViewItemTest extends StatefulWidget {
@@ -38,16 +40,25 @@ class _ViewItemTestState extends State<ViewItemTest> {
             ),
             Row(
               children: <Widget>[
-                const Expanded(flex: 1, child: Text('helloname')),
-                // Text('helldfdfdfdfdfdfdfo2',style: TextStyle(backgroundColor: Colors.yellow))
                 Container(
-                  constraints:
-                      const BoxConstraints(maxWidth: 150, minWidth: 30),
-                  child: const Text('helldfdfddfdfdfdfdfdfdfo2',
+                  margin: const EdgeInsets.only(left: 12),
+                  constraints: const BoxConstraints(maxWidth: 300),
+                  child: const Text(
+                    'hellonamesdfdsaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis),
+                ),
+                Expanded(
+                  flex: 1,
+                  child:Container(
+                  margin: const EdgeInsets.only(left: 10,right: 12),
+                  child: const Text('helldfdfddfdfdfdfdrrrrrrrrrrrrrrrrrddd',
                       style: TextStyle(backgroundColor: Colors.yellow),
+                      textAlign: TextAlign.end,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis),
-                )
+                  ), 
+                ),
               ],
             ),
             Column(
@@ -125,7 +136,7 @@ class _ViewItemTestState extends State<ViewItemTest> {
             // ),
             wContainer(BoxFit.contain),
             // wText("sdfsdfdsfdsdfdfdfddf"),
-            // FittedBox(child: wText("sdfsdfdsfddfdfdfdsdfdfaa")),
+            wContainers(BoxFit.contain, const SingleLineBox(child: Text('sdfssseee'))),
             SingleLineBox(child: wText("sdfsdfdsfddfdfd")),
             SingleLineBox(child: wText("sdfsdfdsfddfdfdaaa")),
             mulText(s1: "home", s2: "http://www.baidu.com"),
@@ -178,6 +189,15 @@ Widget wContainer(BoxFit fit) {
   );
 }
 
+Widget wContainers(BoxFit fit, Widget view) {
+  return Container(
+    width: 50,
+    height: 50,
+    color: Colors.green,
+    child: view,
+  );
+}
+
 Widget wText(String str) {
   Widget child = Text(str);
   return Row(
@@ -196,6 +216,8 @@ Widget mulText({String? s1, String? s2}) {
     ),
   ]));
 }
+
+
 
 class SingleLineBox extends StatelessWidget {
   const SingleLineBox({Key? key, this.child}) : super(key: key);

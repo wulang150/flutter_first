@@ -3,6 +3,7 @@ import 'package:flutter_application_1/dragTest.dart';
 
 import 'deviceSetting.dart';
 import 'viewItemTest.dart';
+import 'shareMain.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,12 +33,18 @@ class MyApp extends StatelessWidget {
       routes: {
         "settingPage": (context) => const DeviceSettingVC(),
         "viewTest": (context) => const ViewItemTest(),
-        "dragTest":(context) => const DragTest(),
+        "dragTest": (context) => const DragTest(),
+        "shareView": ((context) => const ShareMain()),
         "/": (context) =>
             const MyHomePage(title: 'Flutter Demo Home Page'), //注册首页路由
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: const StateLifecycleTest(),
+      onGenerateRoute: (RouteSettings settings){
+        //如果push了不在路由表的view，就会执行到这里
+        String? routeName = settings.name;
+        print(routeName);
+      },
     );
   }
 }
@@ -150,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //     .then((value) {
                 //   print("路由返回值: $value");
                 // });
-                  Navigator.of(context).pushNamed('viewTest');
+                Navigator.of(context).pushNamed('viewTest');
               },
             ),
             OutlinedButton(
@@ -159,18 +166,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.of(context).pushNamed("dragTest");
                 }),
                 child: const Text('comfirm')),
+            OutlinedButton(onPressed: (() {
+              Navigator.of(context).pushNamed("shareView");
+              // debugDumpApp();
+            }), child: const Text("next")),
             Image.network(
               "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
               width: 100.0,
             ),
-            // Image.asset(
-            //   "images/add_video_icon.png",
-            //   fit: BoxFit.contain,
-            //   width: 100,
-            //   height: 100,
-            // ),
+            Image.asset(
+              "images/add_video_icon.png",
+              fit: BoxFit.contain,
+              // width: 100,
+              // height: 100,
+            ),
             Switch(
-              
               value: _switchSelected, //当前状态
               onChanged: (value) {
                 //重新构建页面
