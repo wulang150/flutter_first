@@ -25,11 +25,11 @@ class _ViewItemTestState extends State<ViewItemTest> {
         body: Center(
             child: Column(
           //最上层的column或row占满主轴方向所有空间，纵轴方向根据子控件的最大宽度
-          // mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[Text('hello1'), Text('hello2')],
+              children: const <Widget>[Text('hello133'), Text('hello2')],
             ),
             Row(
               children: const <Widget>[

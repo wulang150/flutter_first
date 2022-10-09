@@ -4,6 +4,7 @@ import 'package:flutter_application_1/dragTest.dart';
 import 'deviceSetting.dart';
 import 'viewItemTest.dart';
 import 'shareMain.dart';
+import 'layoutDemo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         "viewTest": (context) => const ViewItemTest(),
         "dragTest": (context) => const DragTest(),
         "shareView": ((context) => const ShareMain()),
+        "layoutDemo":((context) => const LayoutDemo()),
         "/": (context) =>
             const MyHomePage(title: 'Flutter Demo Home Page'), //注册首页路由
       },
@@ -167,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }),
                 child: const Text('comfirm')),
             OutlinedButton(onPressed: (() {
-              Navigator.of(context).pushNamed("shareView");
+              Navigator.of(context).pushNamed("layoutDemo");
               // debugDumpApp();
             }), child: const Text("next")),
             Image.network(
