@@ -38,14 +38,14 @@ class MyApp extends StatelessWidget {
         "viewTest": (context) => const ViewItemTest(),
         "dragTest": (context) => const DragTest(),
         "shareView": ((context) => const ShareMain()),
-        "layoutDemo":((context) => const LayoutDemo()),
-        "aiDetailVC":((context) => const FDMAIDetailVC()),
+        "layoutDemo": ((context) => const LayoutDemo()),
+        "aiDetailVC": ((context) => const FDMAIDetailVC()),
         "/": (context) =>
             const MyHomePage(title: 'Flutter Demo Home Page'), //注册首页路由
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: const StateLifecycleTest(),
-      onGenerateRoute: (RouteSettings settings){
+      onGenerateRoute: (RouteSettings settings) {
         //如果push了不在路由表的view，就会执行到这里
         String? routeName = settings.name;
         print(routeName);
@@ -171,10 +171,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.of(context).pushNamed("dragTest");
                 }),
                 child: const Text('comfirm')),
-            OutlinedButton(onPressed: (() {
-              Navigator.of(context).pushNamed("aiDetailVC", arguments: FDMAILevelType.high);
-              // debugDumpApp();
-            }), child: const Text("next")),
+            OutlinedButton(
+                onPressed: (() {
+                  Navigator.of(context)
+                      .pushNamed("aiDetailVC", arguments: FDMAILevelType.high);
+                  // debugDumpApp();
+                }),
+                child: const Text("next")),
             Image.network(
               "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
               width: 100.0,
