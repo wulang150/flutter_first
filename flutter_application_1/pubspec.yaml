@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   english_words: ^4.0.0
+  flutter_tableview: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +64,13 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/add_video_icon.png
-  #   - images/a_dot_ham.jpeg
+    - images/printing_ai_icon_accuracy.png
+    - images/ai_face_img_1.png
+    - images/ai_camera_icon.png
+    - images/ai_contrast_icon.png
+    - images/ai_light_icon.png
+    - images/printing_ai_icon_accuracy_poor.png
+    - images/printing_ai_icon_accuracy_u.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

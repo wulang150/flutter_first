@@ -1,3 +1,4 @@
+
 class Post {
   const Post({required this.name,required this.age});
 
