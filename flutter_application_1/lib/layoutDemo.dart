@@ -34,14 +34,152 @@ class LayoutDemo extends StatelessWidget {
       //     Text("sdfsss"),
       //   ],
       // ),
-      body: TableViewDemo(),
+      body: MyGridBuildView(),
     );
   }
+}
+
+//GridView的使用
+class MyGridBuildView extends StatelessWidget{
+
+  Widget _itemBuilder(BuildContext context, int idx){
+    return Container(
+        color: Color.fromARGB(255, 128, 120, 120),
+        alignment: Alignment(0.0, 0.0),
+        child: Text(
+          posts[idx].name,
+          style: TextStyle(fontSize: 14),
+        ),
+      ); 
+  }
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      itemCount: posts.length,
+      itemBuilder: _itemBuilder,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 8,
+      ), 
+      
+    );
+  }
+
+}
+class MyGridCountView extends StatelessWidget{
+  const MyGridCountView({super.key});
+
+
+  List<Widget> _buildItemList(int num){
+    return List.generate(num, (index) {
+      return Container(
+        color: Color.fromARGB(255, 128, 120, 120),
+        alignment: Alignment(0.0, 0.0),
+        child: Text(
+          "Item $index",
+          style: TextStyle(fontSize: 18),
+        ),
+      );
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 3,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      children: _buildItemList(100),
+    );
+  }
+
+}
+
+class MyGridExtentView extends StatelessWidget{
+  const MyGridExtentView({super.key});
+
+
+  List<Widget> _buildItemList(int num){
+    return List.generate(num, (index) {
+      return Container(
+        color: Color.fromARGB(255, 128, 120, 120),
+        alignment: Alignment(0.0, 0.0),
+        child: Text(
+          "Item $index",
+          style: TextStyle(fontSize: 18),
+        ),
+      );
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return GridView.extent(
+      maxCrossAxisExtent: 200,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      children: _buildItemList(100),
+    );
+  }
+}
+
+
+//ScrollController的使用
+class MyListTestDemo extends StatefulWidget{
+  const MyListTestDemo({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyListTestDemoState();
+  }
+
+}
+
+class _MyListTestDemoState extends State<StatefulWidget>{
+  final ScrollController _controller = ScrollController();
+  
+
+  void initState(){
+    _controller.addListener(() {
+        print(_controller.offset); //打印滚动位置
+    });
+  }
+
+  
+   @override
+  void dispose() {
+    //为了避免内存泄露，需要调用_controller.dispose
+    // _controller.dispose();
+    super.dispose();
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        TableViewDemo(mycontroller: _controller),
+        Positioned(
+          bottom: 10,
+          right: 10,
+          child: OutlinedButton(
+            onPressed: (){
+              _controller.animateTo(0, duration: Duration(milliseconds: 200), curve: Curves.ease);
+            }, 
+            child: Text("top")
+          )
+        )
+      ],
+    );
+  }
+  
 }
 
 //tableView
 // ignore: must_be_immutable
 class TableViewDemo extends StatelessWidget{
+
+  TableViewDemo({super.key, required this.mycontroller});
+
+  final ScrollController mycontroller;
   // How many section.
   int sectionCount = 3;
 
@@ -113,9 +251,11 @@ class TableViewDemo extends StatelessWidget{
         cellBuilder: _cellBuilder,
         sectionHeaderHeight: _sectionHeaderHeight,
         cellHeight: _cellHeight,
+        controller: mycontroller,
       ),
     );
   }
+
 }
 //listView
 class ListViewTestDemo extends StatelessWidget {

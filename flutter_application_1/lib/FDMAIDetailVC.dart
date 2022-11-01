@@ -27,6 +27,8 @@ class FDMAIDetailVCState extends State<FDMAIDetailVC> {
             children: [
               AiHeadView(val: 60, level: level),
               createLineView(EdgeInsets.only(top: 40, left: 20, right: 20)),
+              level==FDMAILevelType.disable? 
+              Padding(padding: EdgeInsets.all(0)):
               Expanded(
                   flex: 1,
                   child: Container(
@@ -45,7 +47,7 @@ class AiHeadView extends StatelessWidget {
   final FDMAILevelType level;
   final int val;
   final String content =
-      "The AI will issue error alerts after it has been printing for a while. It needs to compare the print results several times to confirm before issuing an alert.";
+      "Thes AI wills hes issue error alerts after it has been printing for a while. It needs to compare the print results several times to confirm before issuing an alert.";
   @override
   Widget build(BuildContext context) {
  
@@ -64,6 +66,7 @@ class AiHeadView extends StatelessWidget {
           )
         ],
       ),
+      level!=FDMAILevelType.disable?
       Container(
         width: double.infinity,
         padding: EdgeInsets.only(top: 4),
@@ -72,7 +75,7 @@ class AiHeadView extends StatelessWidget {
                 color: level==FDMAILevelType.high? Colors.green:Colors.yellow,
                 fontWeight: FontWeight.w700,
                 fontSize: 48)),
-      ),
+      ):Padding(padding: EdgeInsets.only(top: 0)),
       Container(
         width: double.infinity,
         padding: EdgeInsets.only(top: 8, right: 12),

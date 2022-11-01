@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/TestFieldDemo.dart';
 import 'package:flutter_application_1/dragTest.dart';
 
 import 'deviceSetting.dart';
@@ -7,6 +8,9 @@ import 'shareMain.dart';
 import 'layoutDemo.dart';
 import 'FDMAIDetailVC.dart';
 import './model/FDMAIModel.dart';
+import 'TestDart.dart';
+import 'SliverDemo.dart';
+import 'TestFieldDemo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +35,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        primaryColor: Colors.grey,
       ),
       //注册路由表
       routes: {
@@ -40,6 +45,9 @@ class MyApp extends StatelessWidget {
         "shareView": ((context) => const ShareMain()),
         "layoutDemo": ((context) => const LayoutDemo()),
         "aiDetailVC": ((context) => const FDMAIDetailVC()),
+        "testDartVC": ((context) => const TestDart()),
+        "sliverDemo":((context) =>  const SliverDemo()),
+        "testFieldDemo":((context) =>  const TestFieldDemo()),
         "/": (context) =>
             const MyHomePage(title: 'Flutter Demo Home Page'), //注册首页路由
       },
@@ -168,13 +176,14 @@ class _MyHomePageState extends State<MyHomePage> {
             OutlinedButton(
                 onPressed: (() {
                   // print('hello...');
-                  Navigator.of(context).pushNamed("dragTest");
+                  Navigator.of(context).pushNamed("testFieldDemo");
                 }),
                 child: const Text('comfirm')),
             OutlinedButton(
                 onPressed: (() {
-                  Navigator.of(context)
-                      .pushNamed("aiDetailVC", arguments: FDMAILevelType.high);
+                  // Navigator.of(context)
+                  //     .pushNamed("aiDetailVC", arguments: FDMAILevelType.disable);
+                  Navigator.of(context).pushNamed("layoutDemo");
                   // debugDumpApp();
                 }),
                 child: const Text("next")),
